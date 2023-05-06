@@ -59,7 +59,7 @@ class GameMaster:
     currentPlayer: int
     logs: List[GameLog]
 
-    def __init__(self, **kwargs):
+    def __init__(self, disable_log=False, **kwargs):
         if "hands" in kwargs.keys():
             self.currentHands = kwargs["hands"]
         else:
@@ -68,7 +68,9 @@ class GameMaster:
         self.currentAtk = BoardKoma()
         self.currentBoard = GoitaBoard()
 
-        self.logs = [GameLog(self.currentHands, self.currentBoard)]
+        self.disable_log = disable_log
+        if not disable_log:
+            self.logs = [GameLog(self.currentHands, self.currentBoard)]
         self.currentPlayer = -1
 
     @staticmethod
@@ -93,6 +95,8 @@ class GameMaster:
         self.log_now(koma=atkKoma)
 
     def log_now(self, **kwargs):
+        if self.disable_log:
+            return
         self.logs.append(GameLog(copy.copy(self.currentHands), self.currentBoard, self.currentPlayer, **kwargs))
 
     def to_dict(self):

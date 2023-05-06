@@ -3,9 +3,9 @@ from typing import List
 from collections import Counter
 import random
 
-from GoitaBoard import GoitaBoard, BoardKoma
-from Handset import Handset
-from Koma import Koma
+from pyGoita.GoitaBoard import GoitaBoard, BoardKoma
+from pyGoita.Handset import Handset
+from pyGoita.Koma import Koma
 
 
 def gen_random_hands():
@@ -37,7 +37,7 @@ class GameLog:
 
         if "koma" in kwargs.keys() and kwargs["koma"] != -1:
             assert isinstance(kwargs["koma"], Koma), "Invalid koma type"
-            self.behavior = int(kwargs["koma"])
+            self.behavior = kwargs["koma"].value
         else:
             self.behavior = -1
 
@@ -80,7 +80,7 @@ class GameMaster:
     def update_hand(self, player: int, atkKoma: Koma, defKoma: Koma):
         is_starting = self.currentPlayer == -1 or player == self.currentPlayer
 
-        assert defKoma == self.currentAtk or is_starting, "invalid koma state"
+        assert is_starting or defKoma == self.currentAtk.koma, "invalid koma state"
 
         # logging pass
         if not self.currentPlayer == -1:
@@ -89,10 +89,14 @@ class GameMaster:
                 self.log_now()
         self.currentPlayer = player
 
-        self.currentBoard = self.currentBoard.updated(player, defKoma, is_starting, 0).updated(player, atkKoma, False, 1)
+        self.currentBoard = self.currentBoard.updated(player, defKoma, is_starting, 0)
+        self.currentBoard = self.currentBoard.updated(player, atkKoma, False, 1)
+
         self.currentHands[player] = self.currentHands[player].updated(defKoma).updated(atkKoma)
         assert self.currentBoard != -1 and self.currentHands[player] != -1
         self.log_now(koma=atkKoma)
+
+        self.currentAtk = BoardKoma(koma=atkKoma)
 
     def log_now(self, **kwargs):
         if self.disable_log:
@@ -100,5 +104,5 @@ class GameMaster:
         self.logs.append(GameLog(copy.copy(self.currentHands), self.currentBoard, self.currentPlayer, **kwargs))
 
     def to_dict(self):
-        return [log.to_dict for log in self.logs]
+        return [log.to_dict() for log in self.logs]
 

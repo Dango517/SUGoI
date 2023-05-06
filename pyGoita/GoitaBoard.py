@@ -1,12 +1,11 @@
 import copy
 
-from Koma import Koma
+from pyGoita.Koma import Koma
 
 
 class BoardKoma:
     koma: Koma
     is_reversed: bool
-    is_none: bool
 
     def __init__(self, **kwargs):
         if "koma" in kwargs.keys():
@@ -16,11 +15,10 @@ class BoardKoma:
             if "is_reversed" in kwargs.keys():
                 self.is_reversed = kwargs["is_reversed"]
         else:
-            self.is_none = True
+            self.koma = Koma.NONE
+            self.is_reversed = False
 
     def __str__(self):
-        if self.is_none:
-            return "NAN"
         return self.koma.name
 
 
@@ -37,28 +35,30 @@ class GoitaBoard:
         if "row" in kwargs.keys():
             row = kwargs["row"]
         else:
-            while not self.board[player][row][col].is_none:
+            while not self.board[player][row][col].koma == Koma.NONE:
                 row += 1
+                if row >= len(self.board[player]):
+                    return -1
 
         if is_reversed and col == 1:
             return -1
-        if not self.board[player][row][col].is_none:
+        if self.board[player][row][col].koma != Koma.NONE:
             return -1
 
         new_board = copy.deepcopy(self.board)
 
-        new_board[player][row][col] = BoardKoma(kome=koma, is_reversed=is_reversed)
+        new_board[player][row][col] = BoardKoma(koma=koma, is_reversed=is_reversed)
 
         return GoitaBoard(board=new_board)
 
     # [Koma or -1 , is_reversed] が 4 * 4 * 2で格納
     def to_array(self):
-        res_board = [[[[-1, False] for t in range(2)] for i in range(4)] for j in range(4)]
+        res_board = [[[[Koma.NONE.name, False] for t in range(2)] for i in range(4)] for j in range(4)]
         for player in range(4):
             for row in range(4):
                 for col in range(2):
                     koma = self.board[player][row][col]
-                    res_board[player][row][col][0] = koma.koma
+                    res_board[player][row][col][0] = koma.koma.name
                     res_board[player][row][col][1] = koma.is_reversed
 
         return res_board

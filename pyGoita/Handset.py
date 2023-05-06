@@ -1,5 +1,5 @@
-from Koma import Koma
 import copy
+from pyGoita.Koma import Koma
 
 
 class Handset:
@@ -8,20 +8,15 @@ class Handset:
         for koma in Koma:
             self.hand[koma] = 0
 
-        c = 0
-        for (key, val) in kwargs:
+        for (key, val) in kwargs.items():
             rep = Koma.from_str(key)
-            if rep == -1 or not Koma.checkKomaNum(**{rep: val}):
-                raise ValueError("Invalid argument in each koma")
 
-            self.hand[key] = val
-            c += val
+            assert rep != -1 and Koma.checkKomaNum(**{rep.name: val})
 
-        if c != 8:
-            raise ValueError("Invalid sum of koma")
+            self.hand[rep] = val
 
     def to_dict(self):
-        return copy.deepcopy(self.hand)
+        return copy.deepcopy({name: num for name, num in self.hand.items()})
 
     def to_array(self):
         arr = []
@@ -33,4 +28,5 @@ class Handset:
         assert self.hand[koma] > 0, "invalid update"
         new_hand = copy.deepcopy(self.hand)
         new_hand[koma] -= 1
-        return Handset(**new_hand)
+
+        return Handset(**{key.name: val for (key, val) in new_hand.items()})

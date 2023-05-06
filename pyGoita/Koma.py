@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class Koma(Enum):
+    # nothing or pass
+    NONE = 0
     SHI = 1
     GON = 2
     UMA = 3
@@ -27,12 +29,12 @@ class Koma(Enum):
             return Koma.GIN
         if s == "kak" or s == "kaku" or s == "角":
             return Koma.KAK
-        if s == "hisya" or s == "hisya" or s == "hisha" or s == "飛":
+        if s == "hisya" or s == "hsy" or s == "hisha" or s == "飛":
             return Koma.HSY
         if s == "gyk" or s == "ou" or s == "gyoku" or s == "王" or s == "玉":
             return Koma.GYK
 
-        return -1
+        return Koma.NONE
 
     @staticmethod
     def checkKomaNum(**kwargs):
@@ -42,6 +44,9 @@ class Koma(Enum):
                 rep = Koma.from_str(rep)
             if type(rep) != Koma:
                 return False
+
+            if rep == Koma.NONE:
+                return True
 
             lim = 4
             if rep == Koma.SHI:

@@ -6,6 +6,8 @@ class Handset:
     def __init__(self, **kwargs):
         self.hand = {}
         for koma in Koma:
+            if koma == Koma.NONE:
+                continue
             self.hand[koma] = 0
 
         for (key, val) in kwargs.items():
@@ -16,7 +18,7 @@ class Handset:
             self.hand[rep] = val
 
     def to_dict(self):
-        return copy.deepcopy({name: num for name, num in self.hand.items()})
+        return copy.deepcopy({koma.name: num for koma, num in self.hand.items()})
 
     def to_array(self):
         arr = []

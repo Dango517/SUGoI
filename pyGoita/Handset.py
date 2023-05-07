@@ -3,6 +3,8 @@ from pyGoita.Koma import Koma
 
 
 class Handset:
+    hand: dict
+
     def __init__(self, **kwargs):
         self.hand = {}
         for koma in Koma:
@@ -13,7 +15,11 @@ class Handset:
         for (key, val) in kwargs.items():
             rep = Koma.from_str(key)
 
-            assert rep != -1 and Koma.checkKomaNum(**{rep.name: val})
+            if rep == Koma.NONE:
+                raise ValueError("Invalid kwargs")
+            ignore_num = "ignore_num" in kwargs.keys() and kwargs["ignore_num"]
+            if not ignore_num and not Koma.checkKomaNum(**{rep.name: val}):
+                raise ValueError("Exceeding Num of Koma; if want to ignore, pass 'ignore_num' argument.")
 
             self.hand[rep] = val
 
@@ -27,8 +33,11 @@ class Handset:
         return arr
 
     def updated(self, koma: Koma):
-        assert self.hand[koma] > 0, "invalid update"
-        new_hand = copy.deepcopy(self.hand)
-        new_hand[koma] -= 1
+        if self.hand[koma] <= 0:
+            raise ValueError("Invalid update")
 
-        return Handset(**{key.name: val for (key, val) in new_hand.items()})
+        new_hand = copy.deepcopy(self)
+        new_hand.hand[koma] -= 1
+
+        return new_hand
+

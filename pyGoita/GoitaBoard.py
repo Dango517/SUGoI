@@ -1,4 +1,5 @@
 import copy
+from typing import List
 
 from pyGoita.Koma import Koma
 
@@ -23,12 +24,15 @@ class BoardKoma:
 
 
 class GoitaBoard:
+    num_of_playing: List[int]
+    board: List[List[List[BoardKoma]]]
+    game_end: bool
+
     def __init__(self, **kwargs):
-        if "board" in kwargs.keys():
-            self.board = kwargs["board"]
-        else:
-            # 4 * 4 * 2
-            self.board = [[[BoardKoma(), BoardKoma()] for i in range(4)] for j in range(4)]
+        # 4 * 4 * 2
+        self.board = [[[BoardKoma(), BoardKoma()] for i in range(4)] for j in range(4)]
+        self.num_of_playing = [0 for _ in range(4)]
+        self.game_end = False
 
     def updated(self, player, koma: Koma, is_reversed: bool, col: int, **kwargs):
         row = 0
@@ -38,18 +42,19 @@ class GoitaBoard:
             while not self.board[player][row][col].koma == Koma.NONE:
                 row += 1
                 if row >= len(self.board[player]):
-                    return -1
+                    raise ValueError("Cannot enter new koma")
 
         if is_reversed and col == 1:
-            return -1
+            raise ValueError("Cannot update position, if you want to update, please recreate instance")
         if self.board[player][row][col].koma != Koma.NONE:
-            return -1
+            raise ValueError("Invalid row definition")
 
-        new_board = copy.deepcopy(self.board)
+        new_board = copy.deepcopy(self)
+        new_board.board[player][row][col] = BoardKoma(koma=koma, is_reversed=is_reversed)
+        new_board.num_of_playing[player] = row + 1
+        new_board.game_end = new_board.num_of_playing[player] >= 4
 
-        new_board[player][row][col] = BoardKoma(koma=koma, is_reversed=is_reversed)
-
-        return GoitaBoard(board=new_board)
+        return new_board
 
     # [Koma or -1 , is_reversed] が 4 * 4 * 2で格納
     def to_array(self):

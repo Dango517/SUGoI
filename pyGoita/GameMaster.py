@@ -3,9 +3,9 @@ from typing import List
 from collections import Counter
 import random
 
-from pyGoita.GoitaBoard import GoitaBoard, BoardKoma
-from pyGoita.Handset import Handset
-from pyGoita.Koma import Koma
+from .GoitaBoard import GoitaBoard, BoardKoma
+from .Handset import Handset
+from .Koma import Koma
 
 
 def gen_random_hands():
@@ -82,7 +82,8 @@ class GameMaster:
     def update_hand(self, player: int, atkKoma: Koma, defKoma: Koma):
         is_starting = self.currentPlayer == -1 or player == self.currentPlayer
 
-        assert is_starting or defKoma == self.currentAtk.koma, "invalid koma state"
+        if not (is_starting or defKoma == self.currentAtk.koma):
+            raise ValueError("Invalid koma")
 
         # logging pass
         if not self.currentPlayer == -1:
@@ -107,4 +108,7 @@ class GameMaster:
 
     def to_dict(self):
         return [log.to_dict() for log in self.logs]
+
+    def is_game_ended(self):
+        return self.currentBoard.game_end
 

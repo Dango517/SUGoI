@@ -59,7 +59,10 @@ class GameMaster:
     currentPlayer: int
     logs: List[GameLog]
 
-    def __init__(self, disable_log=False, **kwargs):
+    def __init__(self, disable_log=False):
+        self.disable_log = disable_log
+
+    def start_game(self, **kwargs):
         if "hands" in kwargs.keys():
             self.currentHands = kwargs["hands"]
         else:
@@ -68,8 +71,7 @@ class GameMaster:
         self.currentAtk = BoardKoma()
         self.currentBoard = GoitaBoard()
 
-        self.disable_log = disable_log
-        if not disable_log:
+        if not self.disable_log:
             self.logs = [GameLog(self.currentHands, self.currentBoard)]
         self.currentPlayer = -1
 

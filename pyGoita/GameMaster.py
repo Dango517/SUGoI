@@ -52,7 +52,7 @@ class GameLog:
             "board": self.board.to_array()
         }
 
-
+# TODO: 全部ValueErrorに統一する
 class GameMaster:
     currentHands: List[Handset]
     currentBoard: GoitaBoard

@@ -57,16 +57,26 @@ class GoitaBoard:
         return new_board
 
     # [Koma or -1 , is_reversed] が 4 * 4 * 2で格納
-    def to_array(self):
-        res_board = [[[[Koma.NONE.name, False] for t in range(2)] for i in range(4)] for j in range(4)]
-        for player in range(4):
-            for row in range(4):
-                for col in range(2):
-                    koma = self.board[player][row][col]
-                    res_board[player][row][col][0] = koma.koma.name
-                    res_board[player][row][col][1] = koma.is_reversed
+    def to_array(self, tokenize=True):
+        if not tokenize:
+            res_board = [[[[Koma.NONE.name, False] for t in range(2)] for i in range(4)] for j in range(4)]
+            for player in range(4):
+                for row in range(4):
+                    for col in range(2):
+                        koma = self.board[player][row][col]
+                        res_board[player][row][col][0] = koma.koma.name
+                        res_board[player][row][col][1] = koma.is_reversed
+        else:
+            res_board = [[[[Koma.NONE.value, False] for t in range(2)] for i in range(4)] for j in range(4)]
+            for player in range(4):
+                for row in range(4):
+                    for col in range(2):
+                        koma = self.board[player][row][col]
+                        res_board[player][row][col][0] = koma.koma.value
+                        res_board[player][row][col][1] = 1 if koma.is_reversed else 0
 
         return res_board
+
 
     def to_raw_array(self):
         return copy.deepcopy(self.board)

@@ -29,25 +29,26 @@ class GameLog:
     hands: List[Handset]
     board: GoitaBoard
     played: int
-    behavior: int
+    behavior: List[int]
 
     def __init__(self, hands: List[Handset], board: GoitaBoard, played: int = -1, **kwargs):
         self.hands = hands
         self.board = board
 
         if "koma" in kwargs.keys() and kwargs["koma"] != -1:
-            assert isinstance(kwargs["koma"], Koma), "Invalid koma type"
-            self.behavior = kwargs["koma"].value
+            if not isinstance(kwargs["atkKoma"], Koma) or not isinstance(kwargs["defKoma"], Koma):
+                raise TypeError("Invalid type of Koma")
+            self.behavior = [kwargs["defKoma"].value, kwargs["atkKoma"].value]
         else:
-            self.behavior = -1
+            self.behavior = [0, 0]
 
         self.played = played
 
-    def to_dict(self):
+    def to_dict(self, tokenize=True):
         return {
             "played_player": self.played,
             "behavior": self.behavior,
-            "hands": [hand.to_dict() for hand in self.hands],
+            "hands": [(hand.to_dict() if not tokenize else hand.to_array()) for hand in self.hands],
             "board": self.board.to_array()
         }
 
@@ -58,6 +59,7 @@ class GameMaster:
     currentAtk: BoardKoma
     currentPlayer: int
     logs: List[GameLog]
+    achieved_point: int = -1
 
     def __init__(self, disable_log=False):
         self.disable_log = disable_log
@@ -79,11 +81,17 @@ class GameMaster:
     def incremented_player(player):
         return 0 if player == 3 else player + 1
 
-    def update_hand(self, player: int, atkKoma: Koma, defKoma: Koma):
+    def update_hand(self, player: int, atkKoma: Koma, defKoma: Koma, pre_log=True):
+        if self.currentBoard.game_end:
+            raise ValueError("Invalid update trying of board")
+
         is_starting = self.currentPlayer == -1 or player == self.currentPlayer
 
         if not (is_starting or defKoma == self.currentAtk.koma):
             raise ValueError("Invalid koma")
+
+        if pre_log:
+            self.log_now(atkKoma=atkKoma, defKoma=defKoma)
 
         # logging pass
         if not self.currentPlayer == -1:
@@ -94,10 +102,15 @@ class GameMaster:
 
         self.currentBoard = self.currentBoard.updated(player, defKoma, is_starting, 0)
         self.currentBoard = self.currentBoard.updated(player, atkKoma, False, 1)
+        if self.currentBoard.game_end:
+            self.achieved_point = self.currentBoard.board[player][3][1].koma.get_point()
+
+        if not pre_log:
+            self.log_now(atkKoma=atkKoma, defKoma=defKoma)
 
         self.currentHands[player] = self.currentHands[player].updated(defKoma).updated(atkKoma)
+
         assert self.currentBoard != -1 and self.currentHands[player] != -1
-        self.log_now(koma=atkKoma)
 
         self.currentAtk = BoardKoma(koma=atkKoma)
 
@@ -111,4 +124,10 @@ class GameMaster:
 
     def is_game_ended(self):
         return self.currentBoard.game_end
+
+    def get_point(self):
+        if not self.is_game_ended():
+            return -1
+
+        return self.achieved_point
 

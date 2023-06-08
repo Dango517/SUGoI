@@ -55,3 +55,25 @@ class Koma(Enum):
                 lim = 2
 
             return 0 <= val <= lim
+
+    def get_point(self):
+        if self.value == 0:
+            return -1
+
+        if self.value == 1:
+            return 10
+
+        if self.value <= 3:
+            return 20
+
+        if self.value <= 5:
+            return 30
+
+        if self.value <= 7:
+            return 40
+
+        if self.value == 8:
+            return 50
+
+        return -1
+

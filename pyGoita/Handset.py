@@ -26,10 +26,12 @@ class Handset:
     def to_dict(self):
         return copy.deepcopy({koma.name: num for koma, num in self.hand.items()})
 
-    def to_array(self):
+    def to_array(self, fill_none=True):
         arr = []
         for (key, val) in self.hand:
-            arr.extend([key for _ in range(val)])
+            arr.extend([key.value for _ in range(val)])
+        while not fill_none and len(arr) < 8:
+            arr.append(Koma.NONE.value)
         return arr
 
     def updated(self, koma: Koma):

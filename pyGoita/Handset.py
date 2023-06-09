@@ -28,9 +28,9 @@ class Handset:
 
     def to_array(self, fill_none=True):
         arr = []
-        for (key, val) in self.hand:
+        for (key, val) in self.hand.items():
             arr.extend([key.value for _ in range(val)])
-        while not fill_none and len(arr) < 8:
+        while (not fill_none) or len(arr) < 8:
             arr.append(Koma.NONE.value)
         return arr
 

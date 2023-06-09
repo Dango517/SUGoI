@@ -10,7 +10,7 @@ class LogShaper:
         base_dicts = master.to_dict()
 
         for i, log in enumerate(base_dicts):
-            player_num = base_dicts["played_player"]
+            player_num = log["played_player"]
 
             if path[-1] != "/":
                 path += "/"
@@ -21,9 +21,11 @@ class LogShaper:
 
             other_hands = []
             j = GameMaster.incremented_player(player_num)
-            while j != self_hand:
-                other_hands.append(log["hands"][i])
-                j = np.array(GameMaster.incremented_player(i))
+            print(f"player_num:{player_num}")
+            while j != player_num:
+                other_hands.append(log["hands"][j])
+                print(j)
+                j = GameMaster.incremented_player(j)
             np.save(f"{prefix}.other_hands.npy", np.array(other_hands))
 
             action = log["behavior"]

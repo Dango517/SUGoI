@@ -82,7 +82,7 @@ class GameMaster:
     def update_hand(self, player: int, atkKoma: Koma, defKoma: Koma):
         is_starting = self.currentPlayer == -1 or player == self.currentPlayer
 
-        if not (is_starting or defKoma == self.currentAtk.koma):
+        if not (is_starting or defKoma == self.currentAtk.koma or defKoma == Koma.GYK):
             raise ValueError("Invalid koma")
 
         # logging pass

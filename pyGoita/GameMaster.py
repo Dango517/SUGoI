@@ -87,7 +87,7 @@ class GameMaster:
 
         is_starting = self.currentPlayer == -1 or player == self.currentPlayer
 
-        if not (is_starting or defKoma == self.currentAtk.koma):
+        if not (is_starting or defKoma == self.currentAtk.koma or defKoma == Koma.GYK):
             raise ValueError("Invalid koma")
 
         if pre_log:

@@ -26,14 +26,14 @@ for file in files:
         data = yaml.safe_load(f)
 
     for i, log in enumerate(data["log"]):
-        master = pg.GameMaster()
-        master.start_game(hands=convert_hands(log["hand"]))
+        round = pg.GoitaRound()
+        round.start_game(hands=convert_hands(log["hand"]))
 
         for play_log in log["game"]:
-            master.update_hand(int(play_log[0]), pg.Koma.from_str(play_log[2]), pg.Koma.from_str(play_log[1]))
+            round.update_hand(int(play_log[0]), pg.Koma.from_str(play_log[2]), pg.Koma.from_str(play_log[1]))
 
         log_data = {
-            "game": master.to_dict(),
+            "game": round.to_dict(),
             "score": log["score"]
         }
 

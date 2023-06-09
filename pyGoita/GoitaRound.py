@@ -57,7 +57,7 @@ class GameLog:
 
 
 # TODO: 全部ValueErrorに統一する
-class GameMaster:
+class GoitaRound:
     currentHands: List[Handset]
     currentBoard: GoitaBoard
     currentAtk: BoardKoma

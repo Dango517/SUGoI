@@ -33,7 +33,7 @@ class VoteList:
 
 
 class GoitaRoom:
-    gm: Optional[pg.GameMaster]
+    match: Optional[pg.GoitaRound]
 
     def __init__(self):
         self.players = {i: None for i in range(4)}
@@ -67,20 +67,20 @@ class GoitaRoom:
         if not self.reset_vote_list.is_active:
             return
 
-        self.gm = None
+        self.match = None
         self.players = {i: None for i in range(4)}
         self.reset_voting()
 
     def ready(self, player):
-        if not (self.gm is None or self.gm.is_game_ended()):
+        if not (self.match is None or self.match.is_game_ended()):
             raise ValueError("Trying to ready though the game is continuing")
 
         self.ready_list.vote(player)
         if not self.ready_list.is_active or self.num_of_players < 4:
             return False
 
-        self.gm = pg.GameMaster()
-        self.gm.start_game()
+        self.match = pg.GoitaRound()
+        self.match.start_game()
         self.reset_voting()
 
         return True

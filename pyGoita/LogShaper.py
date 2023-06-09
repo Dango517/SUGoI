@@ -1,13 +1,13 @@
 import numpy as np
 from typing import List
 
-from .GameMaster import GameMaster
+from .GoitaRound import GoitaRound
 
 
 class LogShaper:
     @staticmethod
-    def save_numpy(master: GameMaster, game_id: int, kyk_id: int, points: List[int], path="./"):
-        base_dicts = master.to_dict()
+    def save_numpy(round: GoitaRound, game_id: int, kyk_id: int, points: List[int], path="./"):
+        base_dicts = round.to_dict()
 
         for i, log in enumerate(base_dicts):
             player_num = log["played_player"]
@@ -20,12 +20,12 @@ class LogShaper:
             np.save(f"{prefix}.hand.npy", self_hand)
 
             other_hands = []
-            j = GameMaster.incremented_player(player_num)
+            j = GoitaRound.incremented_player(player_num)
             print(f"player_num:{player_num}")
             while j != player_num:
                 other_hands.append(log["hands"][j])
                 print(j)
-                j = GameMaster.incremented_player(j)
+                j = GoitaRound.incremented_player(j)
             np.save(f"{prefix}.other_hands.npy", np.array(other_hands))
 
             action = log["behavior"]

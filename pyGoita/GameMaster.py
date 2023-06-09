@@ -19,7 +19,7 @@ def gen_random_hands():
         koma_set.extend([koma.name for _ in range(num_koma)])
 
     random.shuffle(koma_set)
-    player_komas = [koma_set[i*4:i*4+4] for i in range(4)]
+    player_komas = [koma_set[i * 4:i * 4 + 4] for i in range(4)]
     player_hands = [Handset(**dict(Counter(player_komas[i]))) for i in range(4)]
 
     return player_hands
@@ -31,11 +31,14 @@ class GameLog:
     played: int
     behavior: List[int]
 
-    def __init__(self, hands: List[Handset], board: GoitaBoard, played: int = -1, **kwargs):
+    def __init__(self, hands: List[Handset], board: GoitaBoard, played: int, **kwargs):
         self.hands = hands
         self.board = board
 
-        if "koma" in kwargs.keys() and kwargs["koma"] != -1:
+        def check_koma(keyword):
+            return keyword in kwargs.keys() and kwargs[keyword]
+
+        if check_koma("atkKoma") and check_koma("defKoma"):
             if not isinstance(kwargs["atkKoma"], Koma) or not isinstance(kwargs["defKoma"], Koma):
                 raise TypeError("Invalid type of Koma")
             self.behavior = [kwargs["defKoma"].value, kwargs["atkKoma"].value]
@@ -52,6 +55,7 @@ class GameLog:
             "board": self.board.to_array()
         }
 
+
 # TODO: 全部ValueErrorに統一する
 class GameMaster:
     currentHands: List[Handset]
@@ -62,6 +66,7 @@ class GameMaster:
     achieved_point: int = -1
 
     def __init__(self, disable_log=False):
+        self.is_first = True
         self.disable_log = disable_log
 
     def start_game(self, **kwargs):
@@ -73,9 +78,16 @@ class GameMaster:
         self.currentAtk = BoardKoma()
         self.currentBoard = GoitaBoard()
 
+        if "start_player" in kwargs.keys():
+            if not (0 <= kwargs["start_player"] <= 3):
+                raise ValueError("Invalid start player index")
+            self.currentPlayer = kwargs["start_player"]
+        else:
+            self.currentPlayer = random.randint(0, 3)
+        self.is_first = True
+
         if not self.disable_log:
-            self.logs = [GameLog(self.currentHands, self.currentBoard)]
-        self.currentPlayer = -1
+            self.logs = []
 
     @staticmethod
     def incremented_player(player):
@@ -85,20 +97,21 @@ class GameMaster:
         if self.currentBoard.game_end:
             raise ValueError("Invalid update trying of board")
 
-        is_starting = self.currentPlayer == -1 or player == self.currentPlayer
+        is_starting = player == self.currentPlayer
 
         if not (is_starting or defKoma == self.currentAtk.koma or defKoma == Koma.GYK):
             raise ValueError("Invalid koma")
 
-        if pre_log:
-            self.log_now(atkKoma=atkKoma, defKoma=defKoma)
-
         # logging pass
-        if not self.currentPlayer == -1:
+        if not self.is_first:
             while player != self.incremented_player(self.currentPlayer):
                 self.currentPlayer = self.incremented_player(self.currentPlayer)
                 self.log_now()
         self.currentPlayer = player
+        self.is_first = False
+
+        if pre_log:
+            self.log_now(atkKoma=atkKoma, defKoma=defKoma)
 
         self.currentBoard = self.currentBoard.updated(player, defKoma, is_starting, 0)
         self.currentBoard = self.currentBoard.updated(player, atkKoma, False, 1)
@@ -130,4 +143,3 @@ class GameMaster:
             return -1
 
         return self.achieved_point
-

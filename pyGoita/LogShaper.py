@@ -6,7 +6,7 @@ from .GameMaster import GameMaster
 
 class LogShaper:
     @staticmethod
-    def save_numpy(master: GameMaster, game_id: int, points: List[int], path="./"):
+    def save_numpy(master: GameMaster, game_id: int, kyk_id: int, points: List[int], path="./"):
         base_dicts = master.to_dict()
 
         for i, log in enumerate(base_dicts):
@@ -14,7 +14,7 @@ class LogShaper:
 
             if path[-1] != "/":
                 path += "/"
-            prefix = f"{path}{game_id}.{i}.{player_num}"
+            prefix = f"{path}{game_id}.{kyk_id}.{i}.{player_num}"
 
             self_hand = np.array(log["hands"][player_num])
             np.save(f"{prefix}.hand.npy", self_hand)
@@ -35,6 +35,8 @@ class LogShaper:
             if player_num == 1 or player_num == 3:
                 cur_points.reverse()
             np.save(f"{prefix}.points.npy", np.array(cur_points))
+
+            np.save(f"{prefix}.board.npy", np.array(log["board"]))
 
 
 

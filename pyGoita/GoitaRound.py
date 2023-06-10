@@ -63,7 +63,9 @@ class GoitaRound:
     currentAtk: BoardKoma
     currentPlayer: int
     logs: List[GameLog]
+
     achieved_point: int = -1
+    winner_side: int = -1
 
     def __init__(self, disable_log=False):
         self.is_first = True
@@ -116,7 +118,13 @@ class GoitaRound:
         self.currentBoard = self.currentBoard.updated(player, defKoma, is_starting, 0)
         self.currentBoard = self.currentBoard.updated(player, atkKoma, False, 1)
         if self.currentBoard.game_end:
-            self.achieved_point = self.currentBoard.board[player][3][1].koma.get_point()
+            agari = self.currentBoard.board[player][3][1].koma
+            point = agari.get_point()
+            if is_starting and self.currentBoard.board[player][3][0].koma == agari:
+                point *= 2
+
+            self.achieved_point = point
+            self.winner_side = player % 2
 
         if not pre_log:
             self.log_now(atkKoma=atkKoma, defKoma=defKoma)
@@ -137,9 +145,3 @@ class GoitaRound:
 
     def is_game_ended(self):
         return self.currentBoard.game_end
-
-    def get_point(self):
-        if not self.is_game_ended():
-            return -1
-
-        return self.achieved_point

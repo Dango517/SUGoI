@@ -24,7 +24,7 @@ def main():
         pg.LogExporter.log_match_numpy(
             match,
             i,
-            path="../extendedData/npy-1/"
+            path="../extendedData/test/2"
         )
 
 

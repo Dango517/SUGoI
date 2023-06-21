@@ -1,4 +1,6 @@
-data/
+data/raw_kifu/*
+data/result/win/*
+data/result/lose/*
 venv/
 .idea/
 **/__pycache__/

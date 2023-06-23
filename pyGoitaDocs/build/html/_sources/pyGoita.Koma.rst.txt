@@ -1,0 +1,7 @@
+pyGoita.Koma module
+===================
+
+.. automodule:: pyGoita.Koma
+   :members:
+   :undoc-members:
+   :show-inheritance:

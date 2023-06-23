@@ -1,3 +1,7 @@
+"""GoitaBoard
+Defines Goita board data structure.
+"""
+
 import copy
 from typing import List
 
@@ -5,10 +9,22 @@ from pyGoita.Koma import Koma
 
 
 class BoardKoma:
+    """BoardKoma
+    Represents Goita koma on the board.
+    Includes reverse status.
+    """
+
     koma: Koma
+    """ The koma variable """
+
     is_reversed: bool
+    """ Which the koma is reversed """
 
     def __init__(self, **kwargs):
+        """
+        Args:
+            **kwargs: Refer the Koma class
+        """
         if "koma" in kwargs.keys():
             self.koma = kwargs["koma"]
 
@@ -20,21 +36,52 @@ class BoardKoma:
             self.is_reversed = False
 
     def __str__(self):
+        """str cast
+
+        Returns:
+            The name (not include reverse information)
+        """
         return self.koma.name
 
 
 class GoitaBoard:
-    num_of_playing: List[int]
-    board: List[List[List[BoardKoma]]]
-    game_end: bool
+    """GoitaBoard
+    The game board class of Goita
+    """
 
-    def __init__(self, **kwargs):
+    num_of_playing: List[int]
+    """ How many times the player actioned, shape 4 """
+
+    board: List[List[List[BoardKoma]]]
+    """ Board status, shape 4 * 4 * 2 (player * row * column) """
+
+    game_end: bool
+    """ Which the game ended """
+
+    def __init__(self):
         # 4 * 4 * 2
         self.board = [[[BoardKoma(), BoardKoma()] for i in range(4)] for j in range(4)]
         self.num_of_playing = [0 for _ in range(4)]
         self.game_end = False
 
     def updated(self, player, koma: Koma, is_reversed: bool, col: int, **kwargs):
+        """updated
+        Returns the updated new board instance
+
+        Args:
+            player: Playing player index(0 ~ 3)
+            koma: The setting koma
+            is_reversed: Which the koma is reversed
+            col: The position of koma(0 or 1)
+            **kwargs:
+                row: Specified row index of setting koma
+
+        Returns:
+            The new board that have set the koma
+
+        Raises:
+            ValueError: When the given argument is invalid
+        """
         row = 0
         if "row" in kwargs.keys():
             row = kwargs["row"]
@@ -58,6 +105,15 @@ class GoitaBoard:
 
     # [Koma or -1 , is_reversed] が 4 * 4 * 2で格納
     def to_array(self, tokenize=True):
+        """to_array
+        Returns the board converted to array
+
+        Args:
+            tokenize: If True, parse the koma to int token. If False, it is represented as str. (default True)
+
+        Returns:
+            The board koma array
+        """
         if not tokenize:
             res_board = [[[[Koma.NONE.name, False] for t in range(2)] for i in range(4)] for j in range(4)]
             for player in range(4):
@@ -77,6 +133,12 @@ class GoitaBoard:
 
         return res_board
 
-
     def to_raw_array(self):
+        """to_raw_array
+        Returns raw board list.
+        The koma represented as BoardKoma instance.
+
+        Returns:
+            Deep copy of the baord list, each element's type is BoardKoma
+        """
         return copy.deepcopy(self.board)

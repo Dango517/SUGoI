@@ -1,0 +1,7 @@
+pyGoita.Handset module
+======================
+
+.. automodule:: pyGoita.Handset
+   :members:
+   :undoc-members:
+   :show-inheritance:

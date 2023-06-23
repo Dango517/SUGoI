@@ -1,0 +1,7 @@
+pyGoita.GoitaMatch module
+=========================
+
+.. automodule:: pyGoita.GoitaMatch
+   :members:
+   :undoc-members:
+   :show-inheritance:

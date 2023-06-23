@@ -1,0 +1,7 @@
+pyGoita.LogExporter module
+==========================
+
+.. automodule:: pyGoita.LogExporter
+   :members:
+   :undoc-members:
+   :show-inheritance:

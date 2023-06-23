@@ -1,0 +1,10 @@
+pyGoita.docs package
+====================
+
+Module contents
+---------------
+
+.. automodule:: pyGoita.docs
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+pyGoita.GoitaBoard module
+=========================
+
+.. automodule:: pyGoita.GoitaBoard
+   :members:
+   :undoc-members:
+   :show-inheritance:

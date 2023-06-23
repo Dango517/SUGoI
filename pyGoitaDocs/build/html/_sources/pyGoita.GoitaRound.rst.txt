@@ -1,0 +1,7 @@
+pyGoita.GoitaRound module
+=========================
+
+.. automodule:: pyGoita.GoitaRound
+   :members:
+   :undoc-members:
+   :show-inheritance:

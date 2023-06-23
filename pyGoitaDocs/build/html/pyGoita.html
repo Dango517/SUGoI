@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyGoita package &mdash; pyGoita  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyGoita" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pyGoita
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyGoita</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyGoita package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.GoitaBoard">pyGoita.GoitaBoard module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaBoard.BoardKoma"><code class="docutils literal notranslate"><span class="pre">BoardKoma</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaBoard.GoitaBoard"><code class="docutils literal notranslate"><span class="pre">GoitaBoard</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.GoitaMatch">pyGoita.GoitaMatch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaMatch.GoitaMatch"><code class="docutils literal notranslate"><span class="pre">GoitaMatch</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.GoitaRound">pyGoita.GoitaRound module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaRound.gen_random_hands"><code class="docutils literal notranslate"><span class="pre">gen_random_hands()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaRound.GameLog"><code class="docutils literal notranslate"><span class="pre">GameLog</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.GoitaRound.GoitaRound"><code class="docutils literal notranslate"><span class="pre">GoitaRound</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.Handset">pyGoita.Handset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.Handset.Handset"><code class="docutils literal notranslate"><span class="pre">Handset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.Koma">pyGoita.Koma module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.Koma.Koma"><code class="docutils literal notranslate"><span class="pre">Koma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita.LogExporter">pyGoita.LogExporter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.LogExporter.MatchDataNumpy"><code class="docutils literal notranslate"><span class="pre">MatchDataNumpy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyGoita.LogExporter.LogExporter"><code class="docutils literal notranslate"><span class="pre">LogExporter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyGoita">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyGoita</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pyGoita</a></li>
+      <li class="breadcrumb-item active">pyGoita package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pyGoita.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pygoita-package">
+<h1>pyGoita package<a class="headerlink" href="#pygoita-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pyGoita.GoitaBoard">
+<span id="pygoita-goitaboard-module"></span><h2>pyGoita.GoitaBoard module<a class="headerlink" href="#module-pyGoita.GoitaBoard" title="Permalink to this heading"></a></h2>
+<p>GoitaBoard
+Defines Goita board data structure.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.BoardKoma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaBoard.</span></span><span class="sig-name descname"><span class="pre">BoardKoma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.BoardKoma" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents Goita koma on the board.
+Includes reverse status.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.BoardKoma.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.BoardKoma.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – Refer the Koma class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.BoardKoma.koma">
+<span class="sig-name descname"><span class="pre">koma</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></em><a class="headerlink" href="#pyGoita.GoitaBoard.BoardKoma.koma" title="Permalink to this definition"></a></dt>
+<dd><p>The koma variable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.BoardKoma.is_reversed">
+<span class="sig-name descname"><span class="pre">is_reversed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pyGoita.GoitaBoard.BoardKoma.is_reversed" title="Permalink to this definition"></a></dt>
+<dd><p>Which the koma is reversed</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaBoard.</span></span><span class="sig-name descname"><span class="pre">GoitaBoard</span></span><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The game board class of Goita</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.board">
+<span class="sig-name descname"><span class="pre">board</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.GoitaBoard.BoardKoma" title="pyGoita.GoitaBoard.BoardKoma"><span class="pre">BoardKoma</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.board" title="Permalink to this definition"></a></dt>
+<dd><p>Board status, shape 4 * 4 * 2 (player * row * column)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.num_of_playing">
+<span class="sig-name descname"><span class="pre">num_of_playing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.num_of_playing" title="Permalink to this definition"></a></dt>
+<dd><p>How many times the player actioned, shape 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.game_end">
+<span class="sig-name descname"><span class="pre">game_end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.game_end" title="Permalink to this definition"></a></dt>
+<dd><p>Which the game ended</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.updated">
+<span class="sig-name descname"><span class="pre">updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">koma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_reversed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.updated" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the updated new board instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>player</strong> – Playing player index(0 ~ 3)</p></li>
+<li><p><strong>koma</strong> – The setting koma</p></li>
+<li><p><strong>is_reversed</strong> – Which the koma is reversed</p></li>
+<li><p><strong>col</strong> – The position of koma(0 or 1)</p></li>
+<li><p><strong>**kwargs</strong> – row: Specified row index of setting koma</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The new board that have set the koma</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – When the given argument is invalid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.to_array">
+<span class="sig-name descname"><span class="pre">to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.to_array" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the board converted to array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tokenize</strong> – If True, parse the koma to int token. If False, it is represented as str. (default True)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The board koma array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaBoard.GoitaBoard.to_raw_array">
+<span class="sig-name descname"><span class="pre">to_raw_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaBoard.GoitaBoard.to_raw_array" title="Permalink to this definition"></a></dt>
+<dd><p>Returns raw board list.
+The koma represented as BoardKoma instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Deep copy of the baord list, each element’s type is BoardKoma</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita.GoitaMatch">
+<span id="pygoita-goitamatch-module"></span><h2>pyGoita.GoitaMatch module<a class="headerlink" href="#module-pyGoita.GoitaMatch" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaMatch.</span></span><span class="sig-name descname"><span class="pre">GoitaMatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disable_log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.current_round">
+<span class="sig-name descname"><span class="pre">current_round</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyGoita.GoitaRound.GoitaRound" title="pyGoita.GoitaRound.GoitaRound"><span class="pre">GoitaRound</span></a></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.current_round" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.current_points">
+<span class="sig-name descname"><span class="pre">current_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[0,</span> <span class="pre">0]</span></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.current_points" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.match_over">
+<span class="sig-name descname"><span class="pre">match_over</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.match_over" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.winner">
+<span class="sig-name descname"><span class="pre">winner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.winner" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.logs">
+<span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.GoitaRound.GoitaRound" title="pyGoita.GoitaRound.GoitaRound"><span class="pre">GoitaRound</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.logs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.point_logs">
+<span class="sig-name descname"><span class="pre">point_logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.point_logs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disable_log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.reset_round">
+<span class="sig-name descname"><span class="pre">reset_round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.reset_round" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.start_round">
+<span class="sig-name descname"><span class="pre">start_round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.start_round" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaMatch.GoitaMatch.update_hand">
+<span class="sig-name descname"><span class="pre">update_hand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atkKoma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">defKoma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaMatch.GoitaMatch.update_hand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita.GoitaRound">
+<span id="pygoita-goitaround-module"></span><h2>pyGoita.GoitaRound module<a class="headerlink" href="#module-pyGoita.GoitaRound" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.gen_random_hands">
+<span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaRound.</span></span><span class="sig-name descname"><span class="pre">gen_random_hands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.gen_random_hands" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaRound.</span></span><span class="sig-name descname"><span class="pre">GameLog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.Handset.Handset" title="pyGoita.Handset.Handset"><span class="pre">Handset</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.GoitaBoard.GoitaBoard" title="pyGoita.GoitaBoard.GoitaBoard"><span class="pre">GoitaBoard</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">played</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GameLog" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.Handset.Handset" title="pyGoita.Handset.Handset"><span class="pre">Handset</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.GoitaBoard.GoitaBoard" title="pyGoita.GoitaBoard.GoitaBoard"><span class="pre">GoitaBoard</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">played</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.hands">
+<span class="sig-name descname"><span class="pre">hands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.Handset.Handset" title="pyGoita.Handset.Handset"><span class="pre">Handset</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.hands" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.board">
+<span class="sig-name descname"><span class="pre">board</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyGoita.GoitaBoard.GoitaBoard" title="pyGoita.GoitaBoard.GoitaBoard"><span class="pre">GoitaBoard</span></a></em><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.board" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.behavior">
+<span class="sig-name descname"><span class="pre">behavior</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.behavior" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.played">
+<span class="sig-name descname"><span class="pre">played</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.played" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GameLog.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GameLog.to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.GoitaRound.</span></span><span class="sig-name descname"><span class="pre">GoitaRound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disable_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.currentHands">
+<span class="sig-name descname"><span class="pre">currentHands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.Handset.Handset" title="pyGoita.Handset.Handset"><span class="pre">Handset</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.currentHands" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.currentBoard">
+<span class="sig-name descname"><span class="pre">currentBoard</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyGoita.GoitaBoard.GoitaBoard" title="pyGoita.GoitaBoard.GoitaBoard"><span class="pre">GoitaBoard</span></a></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.currentBoard" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.currentAtk">
+<span class="sig-name descname"><span class="pre">currentAtk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyGoita.GoitaBoard.BoardKoma" title="pyGoita.GoitaBoard.BoardKoma"><span class="pre">BoardKoma</span></a></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.currentAtk" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.currentPlayer">
+<span class="sig-name descname"><span class="pre">currentPlayer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.currentPlayer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.logs">
+<span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyGoita.GoitaRound.GameLog" title="pyGoita.GoitaRound.GameLog"><span class="pre">GameLog</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.logs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.achieved_point">
+<span class="sig-name descname"><span class="pre">achieved_point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.achieved_point" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.winner_side">
+<span class="sig-name descname"><span class="pre">winner_side</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.winner_side" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disable_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.start_game">
+<span class="sig-name descname"><span class="pre">start_game</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.start_game" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.incremented_player">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">incremented_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.incremented_player" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.update_hand">
+<span class="sig-name descname"><span class="pre">update_hand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atkKoma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">defKoma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.update_hand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.log_now">
+<span class="sig-name descname"><span class="pre">log_now</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.log_now" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.GoitaRound.GoitaRound.is_game_ended">
+<span class="sig-name descname"><span class="pre">is_game_ended</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.GoitaRound.GoitaRound.is_game_ended" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita.Handset">
+<span id="pygoita-handset-module"></span><h2>pyGoita.Handset module<a class="headerlink" href="#module-pyGoita.Handset" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.Handset.</span></span><span class="sig-name descname"><span class="pre">Handset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Handset.Handset" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Handset.Handset.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset.hand">
+<span class="sig-name descname"><span class="pre">hand</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#pyGoita.Handset.Handset.hand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Handset.Handset.to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset.to_array">
+<span class="sig-name descname"><span class="pre">to_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fill_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Handset.Handset.to_array" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Handset.Handset.updated">
+<span class="sig-name descname"><span class="pre">updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">koma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.Koma.Koma" title="pyGoita.Koma.Koma"><span class="pre">Koma</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Handset.Handset.updated" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita.Koma">
+<span id="pygoita-koma-module"></span><h2>pyGoita.Koma module<a class="headerlink" href="#module-pyGoita.Koma" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.Koma.</span></span><span class="sig-name descname"><span class="pre">Koma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Koma.Koma" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.NONE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.SHI">
+<span class="sig-name descname"><span class="pre">SHI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.SHI" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.GON">
+<span class="sig-name descname"><span class="pre">GON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.GON" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.UMA">
+<span class="sig-name descname"><span class="pre">UMA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.UMA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.KIN">
+<span class="sig-name descname"><span class="pre">KIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.KIN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.GIN">
+<span class="sig-name descname"><span class="pre">GIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.GIN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.KAK">
+<span class="sig-name descname"><span class="pre">KAK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.KAK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.HSY">
+<span class="sig-name descname"><span class="pre">HSY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.HSY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.GYK">
+<span class="sig-name descname"><span class="pre">GYK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#pyGoita.Koma.Koma.GYK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Koma.Koma.from_str" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.checkKomaNum">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">checkKomaNum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Koma.Koma.checkKomaNum" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.Koma.Koma.get_point">
+<span class="sig-name descname"><span class="pre">get_point</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.Koma.Koma.get_point" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita.LogExporter">
+<span id="pygoita-logexporter-module"></span><h2>pyGoita.LogExporter module<a class="headerlink" href="#module-pyGoita.LogExporter" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.LogExporter.</span></span><span class="sig-name descname"><span class="pre">MatchDataNumpy</span></span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.hands">
+<span class="sig-name descname"><span class="pre">hands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.hands" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.other_hands">
+<span class="sig-name descname"><span class="pre">other_hands</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.other_hands" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.actions">
+<span class="sig-name descname"><span class="pre">actions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.actions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.points">
+<span class="sig-name descname"><span class="pre">points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.points" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.boards">
+<span class="sig-name descname"><span class="pre">boards</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.boards" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.append_key">
+<span class="sig-name descname"><span class="pre">append_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.append_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.extend">
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.extend" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.export" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.MatchDataNumpy.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.MatchDataNumpy.from_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.LogExporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGoita.LogExporter.</span></span><span class="sig-name descname"><span class="pre">LogExporter</span></span><a class="headerlink" href="#pyGoita.LogExporter.LogExporter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.LogExporter.path_fixer">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path_fixer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.LogExporter.path_fixer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.LogExporter.convert_play">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ_player</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.LogExporter.convert_play" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.LogExporter.convert_round">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g_round</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.GoitaRound.GoitaRound" title="pyGoita.GoitaRound.GoitaRound"><span class="pre">GoitaRound</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targ_player</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.LogExporter.convert_round" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyGoita.LogExporter.LogExporter.convert_match">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyGoita.GoitaMatch.GoitaMatch" title="pyGoita.GoitaMatch.GoitaMatch"><span class="pre">GoitaMatch</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyGoita.LogExporter.LogExporter.convert_match" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyGoita">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyGoita" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="pyGoita" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dango.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+pyGoita.docs.conf module
+========================
+
+.. automodule:: pyGoita.docs.conf
+   :members:
+   :undoc-members:
+   :show-inheritance:
